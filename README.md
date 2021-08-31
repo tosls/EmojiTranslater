@@ -1,6 +1,6 @@
 # EmojiTranslater
 
-Text translation into emoji
+Translates text into emoji
 
 Cat, dog -> 🐱, 🐶
 
