@@ -18,7 +18,6 @@ class NetworkManager {
         let urlString  = "https://raw.githubusercontent.com/integer256/emojimap/master/EmojiMap/EmojiMap/EmojiDataBase.bundle/emojis-en.json"
         
         guard let url = URL(string: urlString) else {return [:]}
-        print(url)
         guard let emojiData = try? Data(contentsOf: url) else { return [:]}
         let emojiJson = try? JSONSerialization.jsonObject(with: emojiData, options: [])
         guard let emojiDictionary = emojiJson as? NSDictionary else {

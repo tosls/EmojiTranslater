@@ -20,17 +20,15 @@ class TranslatorViewController: UIViewController {
         super.viewDidLoad()
         
         setupView()
-        textForTranslation.delegate = self
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
+
     @IBAction func translateButton() {
         textViewDidEndEditing(textForTranslation)
         view.endEditing(true)
-    
     }
     
     private func setupView() {
@@ -51,7 +49,7 @@ extension TranslatorViewController {
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height / 2
+                self.view.frame.origin.y -= keyboardSize.height / 3
             }
         }
     }
@@ -73,12 +71,6 @@ extension TranslatorViewController: UITextViewDelegate {
         for match in translation.getTranslate(text) {
             translationResult += "\(match.emoji)"
         }
-        print(translationResult)
         translatedText.text = translationResult
-    }
-    
-    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
-        self.view.endEditing(true)
-        return false
     }
 }
