@@ -7,9 +7,13 @@
 
 import Foundation
 
-struct translater {
+struct Translation {
     
     let word: String
     let emoji: String
  
+    init(word: String, emoji: String) {
+        self.word = word
+        self.emoji = emoji
+    }
 }

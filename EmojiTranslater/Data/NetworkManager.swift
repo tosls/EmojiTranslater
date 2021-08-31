@@ -27,19 +27,17 @@ class NetworkManager {
         }
         return emojiDictionary
     }
-    
-    
+
     func WordToEmojiMapping() -> [String : [String]] {
         
-        var emojiDictionary: [String : [String]] = [:]
-            
+        var emojiMap: [String : [String]] = [:]
+        
         for (key, value) in fetchEmoji() {
             if let key = key as? String,
                let dictionary = value as? Dictionary<String, AnyObject>,
+               
                let emojiCharacter = dictionary["char"] as? String {
-                
                 addKey(key, value: emojiCharacter, atBeginning: true)
-                
                 if let keywords = dictionary["keywords"] as? [String] {
                     for keyword in keywords {
                         addKey(keyword.lowercased(), value: emojiCharacter, atBeginning: false)
@@ -49,15 +47,15 @@ class NetworkManager {
         }
         
         func addKey(_ key: String, value: String, atBeginning: Bool) {
-            if emojiDictionary[key] == nil {
-                emojiDictionary[key] = []
+            if emojiMap[key] == nil {
+                emojiMap[key] = []
             }
             if atBeginning {
-                emojiDictionary[key]?.insert(value, at: 0)
+                emojiMap[key]?.insert(value, at: 0)
             } else {
-                emojiDictionary[key]?.append(value)
+                emojiMap[key]?.append(value)
             }
         }
-        return emojiDictionary
+        return emojiMap
     }
 }
